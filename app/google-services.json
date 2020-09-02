@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "618444276594",
+    "firebase_url": "https://hatholy-4e65d.firebaseio.com",
+    "project_id": "hatholy-4e65d",
+    "storage_bucket": "hatholy-4e65d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618444276594:android:eb84bfbc157f60b73153eb",
+        "android_client_info": {
+          "package_name": "com.omarshafei.hatholy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618444276594-1kdtu11jkc0h7nbf5gk9iq7nvkhvedov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZeB_819XqPX4P1E53381GIeld8pdzMV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618444276594-1kdtu11jkc0h7nbf5gk9iq7nvkhvedov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

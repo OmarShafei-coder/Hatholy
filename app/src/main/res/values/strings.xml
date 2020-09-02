@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Hatholy</string>
+    <string name="title_home">Home</string>
+    <string name="title_post">Add Post</string>
+    <string name="title_search">Search</string>
+    <string name="name">يرجى ادخال اسمك ثنائي</string>
+    
+    <string-array name="missing">
+        <item>محفظة</item>
+        <item>فلوس</item>
+        <item>بطاقة شخصية</item>
+        <item>جواز سفر</item>
+        <item>نظارة</item>
+        <item>ساعة</item>
+        <item>موبايل</item>
+        <item>شنطة</item>
+        <item>مفاتيح</item>
+        <item>أوراق</item>
+        <item>دهب</item>
+        <item>شيء آخر</item>
+    </string-array>
+</resources>
