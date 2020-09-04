@@ -6,6 +6,11 @@ public class Post {
     private String missingType;
     private String imageUrl;
 
+    public Post(String phoneNumber, String missingType) {
+        this.phoneNumber = phoneNumber;
+        this.missingType = missingType;
+    }
+
     public Post(String phoneNumber, String missingType, String imageUrl) {
         this.phoneNumber = phoneNumber;
         this.missingType = missingType;
