@@ -91,13 +91,24 @@
         app:layout_constraintLeft_toRightOf="@id/missing_image_view"
         app:layout_constraintTop_toBottomOf="@id/add_image_camera" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/missing_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
     <Button
         android:id="@+id/add_post_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="أضف منشور"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/missing_image_view" />
+        app:layout_constraintTop_toBottomOf="@id/progress_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
