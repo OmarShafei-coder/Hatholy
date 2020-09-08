@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,18 +16,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.omarshafei.hatholy.R;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.Objects;
 
 public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
@@ -37,19 +35,37 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private CollectionReference postsRef = FirebaseFirestore.getInstance().collection("Posts");
+    private ShimmerFrameLayout shimmerFrameLayout;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
         spinner = root.findViewById(R.id.missing_spinner);
+        shimmerFrameLayout = root.findViewById(R.id.shimmer_view_container);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
                 R.array.missing, R.layout.spinner_text);
         adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
         setupRecyclerView(root);
+
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmerAnimation();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        shimmerFrameLayout.stopShimmerAnimation();
     }
 
     private void setupRecyclerView(View root) {
@@ -59,7 +75,6 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
             public void onPositionClicked(int position) {
                 String  phoneNumber = postsList.get(position).getPhoneNumber();
                 dialPhoneNumber(phoneNumber);
-
             }
         });
         recyclerView = root.findViewById(R.id.recycler_view);
@@ -79,23 +94,25 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if(adapterView.getItemAtPosition(i).toString().equals("اختار نوع الحاجة")) {
-            postsRef.get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            postsList.clear();
-                            for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
-                                Post post = documentSnapshot.toObject(Post.class);
+            postsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    postsList.clear();
+                    for(QueryDocumentSnapshot documentSnapshot: Objects.requireNonNull(task.getResult())) {
+                        Post post = documentSnapshot.toObject(Post.class);
 
-                                String number = post.getPhoneNumber();
-                                String missingType = post.getMissingType();
-                                String imageUrl = post.getImageUrl();
-                                postsList.add(new Post(number, missingType, imageUrl));
-                            }
-                            postAdapter.notifyDataSetChanged();
-                        }
-                    });
-        } else {
+                        String number = post.getPhoneNumber();
+                        String missingType = post.getMissingType();
+                        String imageUrl = post.getImageUrl();
+                        postsList.add(new Post(number, missingType, imageUrl));
+                    }
+                    postAdapter.notifyDataSetChanged();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+        else {
             postsRef.whereEqualTo("missingType", adapterView.getItemAtPosition(i).toString()).get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override

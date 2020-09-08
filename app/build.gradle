@@ -35,6 +35,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.firebaseui:firebase-ui-firestore:6.3.0'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
