@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="8dp"
-    android:background="@drawable/rounded_background"
+    android:background="@drawable/stroke_background"
     app:layoutDescription="@xml/post_item_scene">
 
     <ImageView
