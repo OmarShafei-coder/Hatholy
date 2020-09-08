@@ -2,6 +2,9 @@ package com.omarshafei.hatholy.ui.Search;
 
 public class Post {
 
+    public Post() {
+    }
+
     private String phoneNumber;
     private String missingType;
     private String imageUrl;

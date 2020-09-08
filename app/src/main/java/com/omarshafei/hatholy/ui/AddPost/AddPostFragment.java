@@ -63,9 +63,8 @@ public class AddPostFragment extends Fragment implements AdapterView.OnItemSelec
     private Button addPostButton;
     private ProgressBar mProgressBar;
     private Uri mImageUri;
-    private CollectionReference postsRef;
+    public static CollectionReference postsRef;
     private StorageReference storageRef;
-    private StorageTask uploadTask;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -111,6 +110,14 @@ public class AddPostFragment extends Fragment implements AdapterView.OnItemSelec
             }
         });
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(Build.VERSION.SDK_INT >= 23){
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, 2);
+        }
     }
 
     private void addPost() {
@@ -188,9 +195,6 @@ public class AddPostFragment extends Fragment implements AdapterView.OnItemSelec
     }
 
     private void addImageFromCamera() {
-        if(Build.VERSION.SDK_INT >= 23){
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, 2);
-        }
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);

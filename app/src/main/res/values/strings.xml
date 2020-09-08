@@ -6,6 +6,7 @@
     <string name="name">يرجى ادخال اسمك ثنائي</string>
     
     <string-array name="missing">
+        <item>اختار نوع الحاجة</item>
         <item>محفظة</item>
         <item>فلوس</item>
         <item>بطاقة شخصية</item>
@@ -17,6 +18,6 @@
         <item>مفاتيح</item>
         <item>أوراق</item>
         <item>دهب</item>
-        <item>شيء آخر</item>
+        <item>حاجة تانية</item>
     </string-array>
 </resources>
