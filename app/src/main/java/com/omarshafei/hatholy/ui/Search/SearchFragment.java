@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,7 +29,6 @@ import java.util.Objects;
 
 public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener{
 
-    private Spinner spinner;
     private ArrayList<Post> postsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
@@ -42,7 +40,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
-        spinner = root.findViewById(R.id.missing_spinner);
+        Spinner spinner = root.findViewById(R.id.missing_spinner);
         shimmerFrameLayout = root.findViewById(R.id.shimmer_view_container);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
@@ -94,6 +92,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if(adapterView.getItemAtPosition(i).toString().equals("اختار نوع الحاجة")) {
+
             postsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -113,6 +112,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
             });
         }
         else {
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
             postsRef.whereEqualTo("missingType", adapterView.getItemAtPosition(i).toString()).get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
@@ -126,6 +126,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                                 String imageUrl = post.getImageUrl();
                                 postsList.add(new Post(number, missingType, imageUrl));
                             }
+                            shimmerFrameLayout.setVisibility(View.GONE);
                             postAdapter.notifyDataSetChanged();
                         }
                     });

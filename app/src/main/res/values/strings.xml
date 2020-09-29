@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Hatholy</string>
-    <string name="title_home">Home</string>
-    <string name="title_post">Add Post</string>
-    <string name="title_search">Search</string>
+    <string name="app_name">هتهولي</string>
+    <string name="title_home">الصفحة الرئيسية</string>
+    <string name="title_post">أضف منشور</string>
+    <string name="title_search">ابحث</string>
     <string name="name">يرجى ادخال اسمك ثنائي</string>
     
     <string-array name="missing">
