@@ -3,12 +3,14 @@ package com.omarshafei.hatholy.ui.Search;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,13 +36,14 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
     private PostAdapter postAdapter;
     private CollectionReference postsRef = FirebaseFirestore.getInstance().collection("Posts");
     private ShimmerFrameLayout shimmerFrameLayout;
+    Spinner spinner;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_search, container, false);
 
-        Spinner spinner = root.findViewById(R.id.missing_spinner);
+        spinner = root.findViewById(R.id.missing_spinner);
         shimmerFrameLayout = root.findViewById(R.id.shimmer_view_container);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
@@ -91,13 +94,13 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        if(adapterView.getItemAtPosition(i).toString().equals("اختار نوع الحاجة")) {
+        postsList.clear();
 
-            postsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        if(adapterView.getItemAtPosition(i).toString().equals("اختار نوع الحاجة")) {
+            postsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    postsList.clear();
-                    for(QueryDocumentSnapshot documentSnapshot: Objects.requireNonNull(task.getResult())) {
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
                         Post post = documentSnapshot.toObject(Post.class);
 
                         String number = post.getPhoneNumber();
@@ -112,12 +115,10 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
             });
         }
         else {
-            shimmerFrameLayout.setVisibility(View.VISIBLE);
             postsRef.whereEqualTo("missingType", adapterView.getItemAtPosition(i).toString()).get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            postsList.clear();
                             for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
                                 Post post = documentSnapshot.toObject(Post.class);
 
@@ -126,11 +127,12 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                                 String imageUrl = post.getImageUrl();
                                 postsList.add(new Post(number, missingType, imageUrl));
                             }
-                            shimmerFrameLayout.setVisibility(View.GONE);
                             postAdapter.notifyDataSetChanged();
+                            shimmerFrameLayout.setVisibility(View.GONE);
                         }
                     });
         }
+
     }
 
     @Override

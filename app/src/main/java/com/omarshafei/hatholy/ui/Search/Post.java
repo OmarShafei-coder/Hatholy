@@ -9,9 +9,6 @@ public class Post {
     public Post() {
     }
 
-    @ServerTimestamp
-    Date createdDate;
-
     private String phoneNumber;
     private String missingType;
     private String imageUrl;
@@ -32,6 +29,18 @@ public class Post {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setMissingType(String missingType) {
+        this.missingType = missingType;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
 

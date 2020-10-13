@@ -4,20 +4,29 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+    /*signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'omar3o20152020'
+            storeFile file('F:\\Android\\Portfolio\\Hatholy\\Key store.jks')
+            storePassword 'omar3o20152020'
+        }
+    }*/
 
     defaultConfig {
         applicationId "com.omarshafei.hatholy"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 6
-        versionName "1.1"
+        versionCode 10
+        versionName "1.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            //signingConfig signingConfigs.release
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,7 +36,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
