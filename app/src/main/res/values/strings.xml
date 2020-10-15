@@ -4,7 +4,13 @@
     <string name="title_post">أضف منشور</string>
     <string name="title_search">ابحث</string>
     <string name="name">يرجى ادخال اسمك ثنائي</string>
-    
+
+    <string name="miss">ضايع منك حاجة؟</string>
+    <string name="findsomething">لاقيت حاجة؟</string>
+    <string name="number">الرقم</string>
+    <string name="entermiss">يرجى ادخال نوع الشيء المفقود</string>
+    <string name="addpost">أضف منشور</string>
+
     <string-array name="missing">
         <item>اختار نوع الحاجة</item>
         <item>محفظة</item>
