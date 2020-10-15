@@ -19,7 +19,7 @@
             android:id="@+id/number_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="يرجى ادخال رقم الموبايل"
+            android:text="@string/please_enter_phone_number"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/entermiss"
+            android:text="@string/enter_miss"
             android:textColor="@android:color/white"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/number_edit_text" />
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="يرجى ادخال صورة الشيء المفقود"
+            android:text="@string/please_enter_missing"
             android:textColor="@android:color/white"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/missing_spinner" />
@@ -112,7 +112,7 @@
             android:id="@+id/add_post_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/addpost"
+            android:text="@string/add_post"
             android:textColor="#ffff"
             android:background="@color/colorPrimary"
             android:layout_marginTop="16dp"

@@ -14,7 +14,7 @@
         android:gravity="center"
         android:layout_margin="50dp"
         android:padding="25dp"
-        android:text="@string/findsomething"
+        android:text="@string/find_something"
         android:textColor="@android:color/white"
         android:background="@drawable/button_shape"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"

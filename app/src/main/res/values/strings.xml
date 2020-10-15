@@ -3,13 +3,14 @@
     <string name="title_home">الصفحة الرئيسية</string>
     <string name="title_post">أضف منشور</string>
     <string name="title_search">ابحث</string>
-    <string name="name">يرجى ادخال اسمك ثنائي</string>
 
     <string name="miss">ضايع منك حاجة؟</string>
-    <string name="findsomething">لاقيت حاجة؟</string>
+    <string name="find_something">لاقيت حاجة؟</string>
     <string name="number">الرقم</string>
-    <string name="entermiss">يرجى ادخال نوع الشيء المفقود</string>
-    <string name="addpost">أضف منشور</string>
+    <string name="enter_miss">يرجى ادخال نوع الشيء المفقود</string>
+    <string name="add_post">أضف منشور</string>
+    <string name="please_enter_phone_number">يرجى ادخال رقم الموبايل</string>
+    <string name="please_enter_missing">يرجى ادخال صورة الشيء المفقود</string>
 
     <string-array name="missing">
         <item>اختار نوع الحاجة</item>
