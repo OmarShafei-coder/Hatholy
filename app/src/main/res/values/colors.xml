@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#EF5350</color>
+    <color name="colorPrimary">#B83D3B</color>
     <color name="colorPrimaryDark">@color/cardview_dark_background</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="bottomNavigation_android_6">#2C2C2C</color>
