@@ -11,19 +11,17 @@ import android.widget.ImageView;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private Animation topAnim, bottomAnim;
-    private ImageView logo, slogan;
     private final Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        Animation topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        Animation bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
-        logo = findViewById(R.id.logo);
-        slogan = findViewById(R.id.slogan);
+        ImageView logo = findViewById(R.id.logo);
+        ImageView slogan = findViewById(R.id.slogan);
 
         logo.setAnimation(topAnim);
         slogan.setAnimation(bottomAnim);

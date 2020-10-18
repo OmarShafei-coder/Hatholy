@@ -39,6 +39,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -66,6 +67,7 @@ public class AddPostFragment extends Fragment implements AdapterView.OnItemSelec
     private Bitmap imageBitmap;
     public static CollectionReference postsRef;
     private StorageReference storageRef;
+    private FirebaseFirestore firebaseFirestore;
     private BottomNavigationView mBottomNavigationView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -83,7 +85,14 @@ public class AddPostFragment extends Fragment implements AdapterView.OnItemSelec
 
         mBottomNavigationView = requireActivity().findViewById(R.id.nav_view);
 
-        postsRef = FirebaseFirestore.getInstance().collection("Posts");
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        //maximum cash size is 30MB
+        firebaseFirestore.setFirestoreSettings(new FirebaseFirestoreSettings.Builder()
+                .setCacheSizeBytes(30)
+                .build());
+
+        postsRef = firebaseFirestore.collection("Posts");
         storageRef = FirebaseStorage.getInstance().getReference().child("images/" + UUID.randomUUID().toString());
         //fill the spinner with the data
         spinnerAdapter = ArrayAdapter.createFromResource(requireContext(),

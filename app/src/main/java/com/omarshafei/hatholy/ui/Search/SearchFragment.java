@@ -26,6 +26,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.omarshafei.hatholy.R;
+import com.omarshafei.hatholy.ui.AddPost.AddPostFragment;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -40,9 +42,8 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        if(AddPostFragment.isNetworkAvailable(getContext()));
         View root = inflater.inflate(R.layout.fragment_search, container, false);
-
         spinner = root.findViewById(R.id.missing_spinner);
         shimmerFrameLayout = root.findViewById(R.id.shimmer_view_container);
 
@@ -94,6 +95,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
         postsList.clear();
 
         if(adapterView.getItemAtPosition(i).toString().equals("اختار نوع الحاجة")) {
