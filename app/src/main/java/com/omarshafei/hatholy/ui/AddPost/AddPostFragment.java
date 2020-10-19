@@ -89,7 +89,7 @@ public class AddPostFragment extends Fragment implements AdapterView.OnItemSelec
 
         //maximum cash size is 30MB
         firebaseFirestore.setFirestoreSettings(new FirebaseFirestoreSettings.Builder()
-                .setCacheSizeBytes(30)
+                .setCacheSizeBytes(30000000)
                 .build());
 
         postsRef = firebaseFirestore.collection("Posts");
